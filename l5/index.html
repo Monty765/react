@@ -10,30 +10,36 @@
 <body>
   <div id="app"></div>
   <script type="text/babel">
-    var SecondComponent = React.createClass({
-      propTypes:{
-        name:React.PropTypes.string.isRequired,
-        location: React.PropTypes.string.isRequired
+    var NameStateComponent = React.createClass({
+      resetName:function(){
+        this.setState({
+          name:''
+        })
       },
-      getDefaultProps:function(){
-        return {
-          name: 'sunskriti',
-          location:'Chicago'
+      namechange: function(event){
+        this.setState({
+          name: event.target.value
+        })
+      },
+
+      getInitialState:function(){
+        return{
+          name:''
         }
       },
+
       render: function(){
-        let name=this.props.name;
-        let location=this.props.location;
-        return (
-          <div>
-          <h1>Hi {name}</h1>
-          <h2>I live in {location}</h2>
-          </div>
-        )
-      }
+      return(
+         <div>
+        <input type="text" onChange={this.namechange}/>
+        <h1>Hello my name is {this.state.name}</h1>
+        <button onClick={this.resetName}>Reset</button>
+        </div>
+      )
+    },
     });
     ReactDOM.render(
-      <SecondComponent />,
+      <NameStateComponent/>,
       document.getElementById('app')
     );
   </script>
