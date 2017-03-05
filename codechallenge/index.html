@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>React tutorials</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.2/browser.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    var NameStateComponent = React.createClass({
+      addCount: function(value){
+        this.setState({
+          counter: this.state.counter + value
+        })
+      },
+      getInitialState:function(){
+        return{
+          counter:0
+        }
+      },
+
+      render: function(){
+      return(
+         <div className="container">
+        <h1>Counter {this.state.counter}</h1>
+        <button onClick={this.addCount.bind(this,1)} className="btn blue-btn">add 1</button>
+        <button onClick={this.addCount.bind(this,5)} className="btn green-btn">add 5</button>
+        <button onClick={this.addCount.bind(this,10)} className="btn purple-btn">add 10</button>
+        </div>
+      )
+    },
+    });
+    ReactDOM.render(
+      <NameStateComponent/>,
+      document.getElementById('app')
+    );
+  </script>
+</body>
+</html>
